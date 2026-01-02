@@ -7,7 +7,7 @@ type SidebarProps = {
 
 export class Sidebar extends Component<SidebarProps> {
   template() {
-    return `<aside class="w-32 rounded-sm bg-gray-900 flex flex-col gap-2 p-0.5 fixed top-2 bottom-2 left-2 transition-all duration-200 overflow-hidden"></aside>`;
+    return `<aside class="w-32 rounded-sm bg-[#28292e] flex flex-col gap-2 fixed top-2 bottom-2 left-2 transition-all duration-200 overflow-hidden"></aside>`;
   }
 
   mount() {

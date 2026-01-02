@@ -5,18 +5,15 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
   width: 100dvw;
   height: 100dvh;
-}
-
-canvas {
-  position: fixed;
-  inset: 0;
+  overflow: hidden;
 }
 
 aside:not(.w-32) .experiment-cards-container {
   display: none;
+}
+
+aside {
+  z-index: 50 !important;
 }

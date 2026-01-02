@@ -1,16 +1,14 @@
 import { Scene, WebGLRenderer } from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
-import {
-  PerspectiveCamera,
-  type OrthographicCamera,
-  type WebGPURenderer,
-} from 'three/webgpu';
-import { BasicSceneExperience } from './experiences/BasicSceneExperience';
+import { PerspectiveCamera, type WebGPURenderer } from 'three/webgpu';
+
 import { URLS } from './constants/Constants';
+import { BasicSceneExperience } from './experiences/BasicSceneExperience';
+import { MaterialColorExperience } from './experiences/MaterialColorExperience';
 
 export class Experience extends Scene {
   renderer?: WebGLRenderer | WebGPURenderer;
-  camera?: OrthographicCamera | PerspectiveCamera;
+  camera?: PerspectiveCamera;
   canvas?: HTMLCanvasElement;
   orbitControls?: OrbitControls;
 
@@ -20,7 +18,26 @@ export class Experience extends Scene {
 
   init() {
     const url = new URL(window.location.href);
+    this.initResize();
+    this.initStandardScene();
     this.initSceneBasedOnURL(url.pathname);
+  }
+
+  initResize() {
+    window.addEventListener('resize', () => {
+      this.resize();
+    });
+  }
+
+  resize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    this.renderer?.setSize(w, h);
+    if (this.camera) {
+      this.camera.aspect = w / h;
+      this.camera.updateProjectionMatrix();
+    }
   }
 
   initSceneBasedOnURL(urlPathName: string) {
@@ -29,10 +46,19 @@ export class Experience extends Scene {
         this.initBasicScene();
         return;
 
+      case URLS.materialColor:
+        this.initMaterialColorScene();
+        return;
+
       default:
         this.initBasicScene();
         break;
     }
+  }
+
+  initMaterialColorScene() {
+    const scene = new MaterialColorExperience(this);
+    scene.init(this);
   }
 
   initStandardScene() {
@@ -61,7 +87,6 @@ export class Experience extends Scene {
   }
 
   initBasicScene() {
-    this.initStandardScene();
     const basicScene = new BasicSceneExperience(this);
     basicScene.init(this);
   }

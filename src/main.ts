@@ -5,5 +5,5 @@ const experience = new Experience();
 
 createApp();
 
-experience.initBasicScene();
+experience.init();
 experience.render();

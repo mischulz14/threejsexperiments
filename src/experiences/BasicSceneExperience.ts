@@ -1,4 +1,5 @@
 import { BoxGeometry, Mesh, MeshNormalMaterial } from 'three';
+
 import type { Experience } from '../Experience';
 
 export class BasicSceneExperience {

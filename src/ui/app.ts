@@ -4,16 +4,13 @@ import { ExperimentCard } from './components/ExperimentCard';
 import { Sidebar } from './components/Sidebar';
 import { uiStore } from './stores/uiStore';
 
-const appRoot = document.getElementById('app');
-
 export function createApp() {
-  if (!appRoot) throw new Error('No #app element found in DOM');
-
   const hideSidebarButton = new Button({
     onClick: () => {
       const { isSidebarOpen: sidebarOpen } = uiStore.getState();
       uiStore.setState({ isSidebarOpen: !sidebarOpen });
     },
+    className: '!bg-[#28292e] !rounded-none',
     children: [
       `
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 ml-auto">
@@ -46,5 +43,5 @@ export function createApp() {
     children: [hideSidebarButton.render(), cardContainer],
   });
 
-  appRoot.appendChild(sidebar.render());
+  document.body.appendChild(sidebar.render());
 }

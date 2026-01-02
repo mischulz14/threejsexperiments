@@ -11,7 +11,7 @@ export class ExperimentCard extends Component<CardProps> {
   template() {
     return `
       <div
-        class="rounded-sm text-gray-400 px-2 py-1 hover:bg-gray-800 transition-all duration-200 cursor-pointer flex justify-center items-center gap-2 text-xs text-center"
+        class="rounded-sm text-gray-400 px-2 py-1 hover:bg-slate-500/20 transition-all duration-200 cursor-pointer flex justify-center items-center gap-2 text-xs text-center"
       >
         ${this.props.label}
       </div>
