@@ -1,12 +1,13 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial } from 'three';
 
-import { debugPane } from '../constants/Constants';
-import type { Experience } from '../Experience';
-import type { IExperience } from '../types/types';
+import { debugPane } from '../../constants/Constants';
+import type { Experience } from '../../Experience';
+import type { IExperience } from '../../types/types';
 
 export class MaterialColorExperience implements IExperience {
   experience: Experience;
   mesh: Mesh | null = null;
+  experienceName: string = 'Material Color';
 
   constructor(experience: Experience) {
     this.experience = experience;

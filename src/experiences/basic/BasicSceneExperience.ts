@@ -1,10 +1,11 @@
 import { BoxGeometry, Mesh, MeshNormalMaterial } from 'three';
 
-import type { Experience } from '../Experience';
-import type { IExperience } from '../types/types';
+import type { Experience } from '../../Experience';
+import type { IExperience } from '../../types/types';
 
 export class BasicSceneExperience implements IExperience {
   experience: Experience;
+  experienceName: string = 'Basic Scene';
 
   constructor(experience: Experience) {
     this.experience = experience;

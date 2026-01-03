@@ -3,8 +3,9 @@ import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { PerspectiveCamera, type WebGPURenderer } from 'three/webgpu';
 
 import { URLS } from './constants/Constants';
-import { BasicSceneExperience } from './experiences/BasicSceneExperience';
-import { MaterialColorExperience } from './experiences/MaterialColorExperience';
+import { BasicSceneExperience } from './experiences/basic/BasicSceneExperience';
+import { GeometryAndWireframeExperience } from './experiences/geomAndWirefrane/GeometryAndWireframeExperience';
+import { MaterialColorExperience } from './experiences/materialColor/MaterialColorExperience';
 import type { Experiences } from './types/types';
 
 export class Experience extends Scene {
@@ -12,12 +13,11 @@ export class Experience extends Scene {
   camera?: PerspectiveCamera;
   canvas?: HTMLCanvasElement;
   orbitControls?: OrbitControls;
-  currentExperience: Experiences;
+  currentExperience: Experiences | null = null;
   clock: Clock = new Clock();
 
   constructor() {
     super();
-    this.currentExperience = new BasicSceneExperience(this);
   }
 
   init() {
@@ -52,6 +52,10 @@ export class Experience extends Scene {
 
       case URLS.materialColor:
         this.initMaterialColorScene();
+        return;
+
+      case URLS.geomAndWireframe:
+        this.initGeomScene();
         return;
 
       default:
@@ -97,6 +101,12 @@ export class Experience extends Scene {
     basicScene.init(this);
   }
 
+  initGeomScene() {
+    const geomScene = new GeometryAndWireframeExperience(this);
+    this.currentExperience = geomScene;
+    geomScene.init(this);
+  }
+
   render(deltaTime: number) {
     this.renderer?.render(this, this.camera!);
     this.orbitControls?.update(deltaTime);
@@ -105,7 +115,7 @@ export class Experience extends Scene {
   raf() {
     requestAnimationFrame(() => {
       const deltaTime = this.clock.getDelta();
-      this.currentExperience.step(deltaTime);
+      this.currentExperience?.step(deltaTime);
       this.render(deltaTime);
       this.raf();
     });

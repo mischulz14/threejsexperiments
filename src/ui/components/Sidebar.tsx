@@ -26,7 +26,7 @@ export default function Sidebar() {
         />
       </div>
       <div
-        className="flex flex-col overflow-hidden"
+        className="flex flex-col overflow-hidden w-full"
         style={{
           height: isSidebarOpen ? 'auto' : 0,
         }}
