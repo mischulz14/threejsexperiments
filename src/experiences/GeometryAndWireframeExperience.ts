@@ -1,7 +1,9 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial } from 'three';
-import type { Experience } from '../Experience';
 
-export class GeometryAndWireframeExperience {
+import type { Experience } from '../Experience';
+import type { IExperience } from '../types/types';
+
+export class GeometryAndWireframeExperience implements IExperience {
   experience: Experience;
 
   constructor(experience: Experience) {
@@ -17,4 +19,6 @@ export class GeometryAndWireframeExperience {
 
     experience.add(mesh);
   }
+
+  step() {}
 }

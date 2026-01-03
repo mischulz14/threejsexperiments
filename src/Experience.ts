@@ -1,19 +1,23 @@
-import { Scene, WebGLRenderer } from 'three';
+import { Clock, Scene, WebGLRenderer } from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { PerspectiveCamera, type WebGPURenderer } from 'three/webgpu';
 
 import { URLS } from './constants/Constants';
 import { BasicSceneExperience } from './experiences/BasicSceneExperience';
 import { MaterialColorExperience } from './experiences/MaterialColorExperience';
+import type { Experiences } from './types/types';
 
 export class Experience extends Scene {
   renderer?: WebGLRenderer | WebGPURenderer;
   camera?: PerspectiveCamera;
   canvas?: HTMLCanvasElement;
   orbitControls?: OrbitControls;
+  currentExperience: Experiences;
+  clock: Clock = new Clock();
 
   constructor() {
     super();
+    this.currentExperience = new BasicSceneExperience(this);
   }
 
   init() {
@@ -58,6 +62,7 @@ export class Experience extends Scene {
 
   initMaterialColorScene() {
     const scene = new MaterialColorExperience(this);
+    this.currentExperience = scene;
     scene.init(this);
   }
 
@@ -88,13 +93,21 @@ export class Experience extends Scene {
 
   initBasicScene() {
     const basicScene = new BasicSceneExperience(this);
+    this.currentExperience = basicScene;
     basicScene.init(this);
   }
 
-  render() {
+  render(deltaTime: number) {
     this.renderer?.render(this, this.camera!);
-    this.orbitControls?.update();
+    this.orbitControls?.update(deltaTime);
+  }
 
-    requestAnimationFrame(() => this.render());
+  raf() {
+    requestAnimationFrame(() => {
+      const deltaTime = this.clock.getDelta();
+      this.currentExperience.step(deltaTime);
+      this.render(deltaTime);
+      this.raf();
+    });
   }
 }

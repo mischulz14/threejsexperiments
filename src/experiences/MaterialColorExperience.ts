@@ -1,15 +1,12 @@
-import {
-  BoxGeometry,
-  Mesh,
-  MeshBasicMaterial,
-  MeshStandardMaterial,
-} from 'three';
+import { BoxGeometry, Mesh, MeshBasicMaterial } from 'three';
 
 import { debugPane } from '../constants/Constants';
 import type { Experience } from '../Experience';
+import type { IExperience } from '../types/types';
 
-export class MaterialColorExperience {
+export class MaterialColorExperience implements IExperience {
   experience: Experience;
+  mesh: Mesh | null = null;
 
   constructor(experience: Experience) {
     this.experience = experience;
@@ -21,6 +18,7 @@ export class MaterialColorExperience {
       color: 0x000000,
     });
     const mesh = new Mesh(cubeGeom, mat);
+    this.mesh = mesh;
 
     experience.add(mesh);
 
@@ -47,5 +45,9 @@ export class MaterialColorExperience {
     binding.on('change', (evt) => {
       mat.color.set(evt.value);
     });
+  }
+
+  step(deltaTime: number) {
+    if (this.mesh) this.mesh.rotation.y += deltaTime;
   }
 }

@@ -1,8 +1,9 @@
 import { BoxGeometry, Mesh, MeshNormalMaterial } from 'three';
 
 import type { Experience } from '../Experience';
+import type { IExperience } from '../types/types';
 
-export class BasicSceneExperience {
+export class BasicSceneExperience implements IExperience {
   experience: Experience;
 
   constructor(experience: Experience) {
@@ -16,4 +17,6 @@ export class BasicSceneExperience {
 
     experience.add(mesh);
   }
+
+  step() {}
 }

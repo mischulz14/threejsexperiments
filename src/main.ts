@@ -1,9 +1,9 @@
 import { Experience } from './Experience';
-import { createApp } from './ui/app';
+import { createApp } from './ui/components/App';
 
 const experience = new Experience();
 
-createApp();
-
 experience.init();
-experience.render();
+experience.raf();
+
+createApp();
