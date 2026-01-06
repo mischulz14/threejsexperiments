@@ -14,6 +14,7 @@ export const URLS = {
   baseScene: '/',
   materialColor: '/materialColor',
   geomAndWireframe: '/geomAndWireframe',
+  basicShader: '/basicShader',
 };
 
 export const EXPERIMENTS = [
@@ -36,6 +37,10 @@ export const EXPERIMENTS = [
     challenge: GeomChallenge,
     resources: GeomResources,
     notes: GeomNotes,
+  },
+  {
+    name: 'Basic Shader',
+    url: URLS.basicShader,
   },
 ] satisfies {
   name: string;

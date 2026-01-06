@@ -4,6 +4,7 @@ import { PerspectiveCamera, type WebGPURenderer } from 'three/webgpu';
 
 import { URLS } from './constants/Constants';
 import { BasicSceneExperience } from './experiences/basic/BasicSceneExperience';
+import { BasicShaderExperience } from './experiences/basicShader/BasicShaderExperience';
 import { GeometryAndWireframeExperience } from './experiences/geomAndWirefrane/GeometryAndWireframeExperience';
 import { MaterialColorExperience } from './experiences/materialColor/MaterialColorExperience';
 import type { Experiences } from './types/types';
@@ -58,6 +59,10 @@ export class Experience extends Scene {
         this.initGeomScene();
         return;
 
+      case URLS.basicShader:
+        this.initBasicShaderScene();
+        return;
+
       default:
         this.initBasicScene();
         break;
@@ -105,6 +110,12 @@ export class Experience extends Scene {
     const geomScene = new GeometryAndWireframeExperience(this);
     this.currentExperience = geomScene;
     geomScene.init(this);
+  }
+
+  initBasicShaderScene() {
+    const basicScene = new BasicShaderExperience();
+    this.currentExperience = basicScene;
+    basicScene.init(this);
   }
 
   render(deltaTime: number) {

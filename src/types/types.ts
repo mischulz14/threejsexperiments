@@ -1,11 +1,13 @@
 import type { BasicSceneExperience } from '../experiences/basic/BasicSceneExperience';
+import type { BasicShaderExperience } from '../experiences/basicShader/BasicShaderExperience';
 import type { GeometryAndWireframeExperience } from '../experiences/geomAndWirefrane/GeometryAndWireframeExperience';
 import type { MaterialColorExperience } from '../experiences/materialColor/MaterialColorExperience';
 
 export type Experiences =
   | BasicSceneExperience
   | GeometryAndWireframeExperience
-  | MaterialColorExperience;
+  | MaterialColorExperience
+  | BasicShaderExperience;
 
 export interface IExperience {
   step: (deltaTime: number) => void;
