@@ -15,6 +15,7 @@ export const URLS = {
   materialColor: '/materialColor',
   geomAndWireframe: '/geomAndWireframe',
   basicShader: '/basicShader',
+  flagShader: '/flagShader',
 };
 
 export const EXPERIMENTS = [
@@ -41,6 +42,10 @@ export const EXPERIMENTS = [
   {
     name: 'Basic Shader',
     url: URLS.basicShader,
+  },
+  {
+    name: 'Flag Shader',
+    url: URLS.flagShader,
   },
 ] satisfies {
   name: string;

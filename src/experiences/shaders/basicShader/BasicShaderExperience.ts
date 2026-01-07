@@ -1,10 +1,10 @@
 import { BoxGeometry, Mesh, ShaderMaterial, Vector3 } from 'three';
 
-import { debugPane } from '../../constants/Constants';
-import type { Experience } from '../../Experience';
-import fragmentShader from '../../shaders/basic/fragment-shader.glsl';
-import vertexShader from '../../shaders/basic/vertex-shader.glsl';
-import type { IExperience } from '../../types/types';
+import { debugPane } from '../../../constants/Constants';
+import type { Experience } from '../../../Experience';
+import fragmentShader from '../../../shaders/basic/fragment-shader.glsl';
+import vertexShader from '../../../shaders/basic/vertex-shader.glsl';
+import type { IExperience } from '../../../types/types';
 
 export class BasicShaderExperience implements IExperience {
   experienceName: string = 'basicShader';
@@ -38,7 +38,6 @@ export class BasicShaderExperience implements IExperience {
     debugPane.addBinding(PARAMS, 'color').on('change', (ev) => {
       const color = ev.value;
 
-      console.log(color);
       this.material!.uniforms.uColor.value = new Vector3(
         color.r / 255,
         color.g / 255,

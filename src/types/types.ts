@@ -1,7 +1,7 @@
 import type { BasicSceneExperience } from '../experiences/basic/BasicSceneExperience';
-import type { BasicShaderExperience } from '../experiences/basicShader/BasicShaderExperience';
 import type { GeometryAndWireframeExperience } from '../experiences/geomAndWirefrane/GeometryAndWireframeExperience';
 import type { MaterialColorExperience } from '../experiences/materialColor/MaterialColorExperience';
+import type { BasicShaderExperience } from '../experiences/shaders/basicShader/BasicShaderExperience';
 
 export type Experiences =
   | BasicSceneExperience
