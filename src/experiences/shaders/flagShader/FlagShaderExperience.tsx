@@ -32,6 +32,12 @@ export class FlagShaderExperience implements IExperience {
         uColor: {
           value: new Vector3(0, 0, 1),
         },
+        uWaveSize: {
+          value: 0.1,
+        },
+        uWaveAmount: {
+          value: 10,
+        },
       },
     });
     this.material = mat;
@@ -50,6 +56,8 @@ export class FlagShaderExperience implements IExperience {
     experience.add(points);
 
     this.addShaderColorBinding();
+    this.addWaveSizeBinding();
+    this.addWaveAmountBinding();
   }
 
   addShaderColorBinding() {
@@ -65,6 +73,42 @@ export class FlagShaderExperience implements IExperience {
         color.b / 255,
       );
     });
+  }
+
+  addWaveSizeBinding() {
+    const PARAMS = {
+      waveSize: 0.1,
+    };
+
+    debugPane
+      .addBinding(PARAMS, 'waveSize', {
+        min: 0.1,
+        max: 1,
+        step: 0.1,
+      })
+      .on('change', (ev) => {
+        const value = ev.value;
+
+        this.material!.uniforms.uWaveSize.value = value;
+      });
+  }
+
+  addWaveAmountBinding() {
+    const PARAMS = {
+      waveAmount: 10,
+    };
+
+    debugPane
+      .addBinding(PARAMS, 'waveAmount', {
+        min: 1,
+        max: 50,
+        step: 1,
+      })
+      .on('change', (ev) => {
+        const value = ev.value;
+
+        this.material!.uniforms.uWaveAmount.value = value;
+      });
   }
 
   step() {}
