@@ -15,10 +15,15 @@ import vertexShader from '../../../shaders/flag/vertex-shader.glsl';
 import type { IExperience } from '../../../types/types';
 
 export class FlagShaderExperience implements IExperience {
+  experience: Experience | null = null;
   experienceName: string = 'flagShader';
   mesh: Mesh | null = null;
   material: ShaderMaterial | null = null;
   points: Points | null = null;
+
+  constructor(experience: Experience) {
+    this.experience = experience;
+  }
 
   init(experience: Experience) {
     const geom = new PlaneGeometry(1, 1, 16, 16);
@@ -38,6 +43,7 @@ export class FlagShaderExperience implements IExperience {
         uWaveAmount: {
           value: 10,
         },
+        uTime: { value: 0 },
       },
     });
     this.material = mat;
@@ -111,5 +117,9 @@ export class FlagShaderExperience implements IExperience {
       });
   }
 
-  step() {}
+  step() {
+    const elapsedTime = this.experience?.clock.getElapsedTime();
+    if (!this.material) return;
+    this.material!.uniforms.uTime.value = elapsedTime;
+  }
 }

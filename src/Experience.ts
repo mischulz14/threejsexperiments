@@ -124,7 +124,7 @@ export class Experience extends Scene {
   }
 
   initFlagShaderScene() {
-    const scene = new FlagShaderExperience();
+    const scene = new FlagShaderExperience(this);
     this.currentExperience = scene;
     scene.init(this);
   }
