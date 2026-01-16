@@ -26,7 +26,7 @@ export class FlagShaderExperience implements IExperience {
   }
 
   init(experience: Experience) {
-    const geom = new PlaneGeometry(1, 1, 16, 16);
+    const geom = new PlaneGeometry(2, 2, 32, 32);
 
     const mat = new ShaderMaterial({
       fragmentShader,
