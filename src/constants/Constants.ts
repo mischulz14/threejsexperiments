@@ -9,6 +9,8 @@ import GeomChallenge from '../experiences/geomAndWirefrane/Challenge';
 import GeomInfo from '../experiences/geomAndWirefrane/Info';
 import GeomNotes from '../experiences/geomAndWirefrane/Notes';
 import GeomResources from '../experiences/geomAndWirefrane/Resources';
+import BasicShaderExperienceChallenge from '../experiences/shaders/basicShader/Challenge';
+import BasicShaderExperienceInfo from '../experiences/shaders/basicShader/Info';
 
 export const URLS = {
   baseScene: '/',
@@ -42,6 +44,8 @@ export const EXPERIMENTS = [
   {
     name: 'Basic Shader',
     url: URLS.basicShader,
+    info: BasicShaderExperienceInfo,
+    challenge: BasicShaderExperienceChallenge,
   },
   {
     name: 'Flag Shader',
