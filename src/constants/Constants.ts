@@ -18,6 +18,7 @@ export const URLS = {
   geomAndWireframe: '/geomAndWireframe',
   basicShader: '/basicShader',
   flagShader: '/flagShader',
+  model: '/model',
 };
 
 export const EXPERIMENTS = [
@@ -50,6 +51,10 @@ export const EXPERIMENTS = [
   {
     name: 'Flag Shader',
     url: URLS.flagShader,
+  },
+  {
+    name: 'Model',
+    url: URLS.model,
   },
 ] satisfies {
   name: string;

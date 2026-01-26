@@ -6,6 +6,7 @@ import { URLS } from './constants/Constants';
 import { BasicSceneExperience } from './experiences/basic/BasicSceneExperience';
 import { GeometryAndWireframeExperience } from './experiences/geomAndWirefrane/GeometryAndWireframeExperience';
 import { MaterialColorExperience } from './experiences/materialColor/MaterialColorExperience';
+import { ModelExperience } from './experiences/model/ModelExperience';
 import { BasicShaderExperience } from './experiences/shaders/basicShader/BasicShaderExperience';
 import { FlagShaderExperience } from './experiences/shaders/flagShader/FlagShaderExperience';
 import type { Experiences } from './types/types';
@@ -68,6 +69,10 @@ export class Experience extends Scene {
         this.initFlagShaderScene();
         return;
 
+      case URLS.model:
+        this.initModelScene();
+        return;
+
       default:
         this.initBasicScene();
         break;
@@ -125,6 +130,12 @@ export class Experience extends Scene {
 
   initFlagShaderScene() {
     const scene = new FlagShaderExperience(this);
+    this.currentExperience = scene;
+    scene.init(this);
+  }
+
+  initModelScene() {
+    const scene = new ModelExperience(this);
     this.currentExperience = scene;
     scene.init(this);
   }
