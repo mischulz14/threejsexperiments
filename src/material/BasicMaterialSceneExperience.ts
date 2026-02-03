@@ -3,6 +3,7 @@ import {
   Mesh,
   MeshStandardMaterial,
   PointLight,
+  RepeatWrapping,
   SphereGeometry,
   SRGBColorSpace,
   Texture,
@@ -41,10 +42,32 @@ export class BasicMaterialSceneExperience implements IExperience {
       '/materials/alien/alien_stone_78_55_roughness.jpg',
     );
     this.metalnessMap = loader.load(
-      '/materials/alien/alien_stone_78__55metallic.png',
+      '/materials/alien/alien_stone_78_55_metallic.png',
+    );
+
+    this.displacementMap = loader.load(
+      '/materials/alien/alien_stone_78_55_height.png',
     );
 
     this.colorMap.colorSpace = SRGBColorSpace;
+
+    const maps = [
+      this.colorMap,
+      this.normalMap,
+      this.aoMap,
+      this.roughnessMap,
+      this.metalnessMap,
+      this.displacementMap,
+    ];
+
+    const tilesX = 4;
+    const tilesY = 2;
+
+    maps.forEach((tex) => {
+      if (!tex) return;
+      tex.wrapS = tex.wrapT = RepeatWrapping;
+      tex.repeat.set(tilesX, tilesY);
+    });
   }
 
   addLights(experience: Experience) {
@@ -58,13 +81,16 @@ export class BasicMaterialSceneExperience implements IExperience {
   init(experience: Experience) {
     this.loadMaps();
     this.addLights(experience);
-    const cubeGeom = new SphereGeometry(1, 128, 128);
+    const cubeGeom = new SphereGeometry(1, 64, 64);
     const mat = new MeshStandardMaterial({
       map: this.colorMap,
       aoMap: this.aoMap,
       normalMap: this.normalMap,
       roughnessMap: this.roughnessMap,
       metalnessMap: this.metalnessMap,
+      displacementMap: this.displacementMap,
+      displacementScale: 0.03,
+      displacementBias: -0.1,
     });
     const mesh = new Mesh(cubeGeom, mat);
     mesh.position.set(0, 0, 0);
