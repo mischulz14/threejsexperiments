@@ -8,6 +8,7 @@ import { GeometryAndWireframeExperience } from './experiences/geomAndWirefrane/G
 import { MaterialColorExperience } from './experiences/materialColor/MaterialColorExperience';
 import { ModelExperience } from './experiences/model/ModelExperience';
 import { BasicShaderExperience } from './experiences/shaders/basicShader/BasicShaderExperience';
+import { BlobShaderExperience } from './experiences/shaders/blobShader/BlobShaderExperience';
 import { FlagShaderExperience } from './experiences/shaders/flagShader/FlagShaderExperience';
 import { BasicMaterialSceneExperience } from './material/BasicMaterialSceneExperience';
 import type { Experiences } from './types/types';
@@ -78,10 +79,19 @@ export class Experience extends Scene {
         this.initMaterialScene();
         return;
 
+      case URLS.blobShader:
+        this.initBlobShaderScene();
+        return;
+
       default:
         this.initBasicScene();
         break;
     }
+  }
+  initBlobShaderScene() {
+    const scene = new BlobShaderExperience(this);
+    this.currentExperience = scene;
+    scene.init(this);
   }
 
   initMaterialColorScene() {

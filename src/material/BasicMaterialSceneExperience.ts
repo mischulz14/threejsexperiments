@@ -15,7 +15,7 @@ import type { IExperience } from '../types/types';
 
 export class BasicMaterialSceneExperience implements IExperience {
   experience: Experience;
-  experienceName: string = 'Basic Scene';
+  experienceName: string = 'Basic Material Scene';
   normalMap: Texture | null = null;
   colorMap: Texture | null = null;
   aoMap: Texture | null = null;

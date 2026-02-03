@@ -20,6 +20,7 @@ export const URLS = {
   flagShader: '/flagShader',
   model: '/model',
   material: '/material',
+  blobShader: '/blobShader',
 };
 
 export const EXPERIMENTS = [
@@ -60,6 +61,10 @@ export const EXPERIMENTS = [
   {
     name: 'Material',
     url: URLS.material,
+  },
+  {
+    name: 'Blob Shader',
+    url: URLS.blobShader,
   },
 ] satisfies {
   name: string;
