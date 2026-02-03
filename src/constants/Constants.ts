@@ -19,6 +19,7 @@ export const URLS = {
   basicShader: '/basicShader',
   flagShader: '/flagShader',
   model: '/model',
+  material: '/material',
 };
 
 export const EXPERIMENTS = [
@@ -55,6 +56,10 @@ export const EXPERIMENTS = [
   {
     name: 'Model',
     url: URLS.model,
+  },
+  {
+    name: 'Material',
+    url: URLS.material,
   },
 ] satisfies {
   name: string;

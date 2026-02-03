@@ -9,6 +9,7 @@ import { MaterialColorExperience } from './experiences/materialColor/MaterialCol
 import { ModelExperience } from './experiences/model/ModelExperience';
 import { BasicShaderExperience } from './experiences/shaders/basicShader/BasicShaderExperience';
 import { FlagShaderExperience } from './experiences/shaders/flagShader/FlagShaderExperience';
+import { BasicMaterialSceneExperience } from './material/BasicMaterialSceneExperience';
 import type { Experiences } from './types/types';
 
 export class Experience extends Scene {
@@ -71,6 +72,10 @@ export class Experience extends Scene {
 
       case URLS.model:
         this.initModelScene();
+        return;
+
+      case URLS.material:
+        this.initMaterialScene();
         return;
 
       default:
@@ -136,6 +141,12 @@ export class Experience extends Scene {
 
   initModelScene() {
     const scene = new ModelExperience(this);
+    this.currentExperience = scene;
+    scene.init(this);
+  }
+
+  initMaterialScene() {
+    const scene = new BasicMaterialSceneExperience(this);
     this.currentExperience = scene;
     scene.init(this);
   }
