@@ -81,7 +81,7 @@ export class BasicMaterialSceneExperience implements IExperience {
   init(experience: Experience) {
     this.loadMaps();
     this.addLights(experience);
-    const cubeGeom = new SphereGeometry(1, 64, 64);
+    const cubeGeom = new SphereGeometry(1, 256, 256);
     const mat = new MeshStandardMaterial({
       map: this.colorMap,
       aoMap: this.aoMap,
@@ -89,8 +89,8 @@ export class BasicMaterialSceneExperience implements IExperience {
       roughnessMap: this.roughnessMap,
       metalnessMap: this.metalnessMap,
       displacementMap: this.displacementMap,
-      displacementScale: 0.03,
-      displacementBias: -0.1,
+      displacementScale: 0.05,
+      displacementBias: -0.25,
     });
     const mesh = new Mesh(cubeGeom, mat);
     mesh.position.set(0, 0, 0);
