@@ -5,6 +5,7 @@ import { PerspectiveCamera, type WebGPURenderer } from 'three/webgpu';
 import { URLS } from './constants/Constants';
 import { BasicSceneExperience } from './experiences/basic/BasicSceneExperience';
 import { GeometryAndWireframeExperience } from './experiences/geomAndWirefrane/GeometryAndWireframeExperience';
+import { GizmoSceneExperience } from './experiences/gizmo/GizmoScene';
 import { MaterialColorExperience } from './experiences/materialColor/MaterialColorExperience';
 import { ModelExperience } from './experiences/model/ModelExperience';
 import { BasicShaderExperience } from './experiences/shaders/basicShader/BasicShaderExperience';
@@ -83,10 +84,19 @@ export class Experience extends Scene {
         this.initBlobShaderScene();
         return;
 
+      case URLS.gizmo:
+        this.initGizmoScene();
+        return;
+
       default:
         this.initBasicScene();
         break;
     }
+  }
+  initGizmoScene() {
+    const scene = new GizmoSceneExperience(this);
+    this.currentExperience = scene;
+    scene.init(this);
   }
   initBlobShaderScene() {
     const scene = new BlobShaderExperience(this);
